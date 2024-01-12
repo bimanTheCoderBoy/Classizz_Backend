@@ -25,8 +25,15 @@ const createStudent=async(req,res,next)=>{
 }
 
 
-const getStudent=()=>{
-    
+const getStudent=(req,res,next)=>{
+    try {
+        const student=StudentService.getStudent(req.body);
+
+        res.send(student)
+    } catch (error) {
+        next(new Errorx("Error"))
+    }
+   
 }
 
 
