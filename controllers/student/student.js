@@ -31,7 +31,7 @@ const getStudent=(req,res,next)=>{
 
         res.send(student)
     } catch (error) {
-        next(new Errorx("Error"))
+        next(new Errorx("Error creating student",500))
     }
    
 }

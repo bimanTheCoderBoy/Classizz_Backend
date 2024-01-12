@@ -26,4 +26,15 @@ const createTeacher=async(req,res,next)=>{
     }
 }
 
-module.exports={alreadyExist,createTeacher}
+const getteacher=(req,res,next)=>{
+    try {
+        const teacher=TeacherService.getTeacher(req.body);
+
+        res.send(teacher)
+    } catch (error) {
+        next(new Errorx("Error creating student",500))
+    }
+   
+}
+
+module.exports={alreadyExist,createTeacher,getTeacher}

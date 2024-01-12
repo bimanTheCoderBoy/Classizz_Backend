@@ -3,7 +3,7 @@ const Student =require("../../models/student")
 const Errorx = require("../error/customError")
 
 module.exports=(req,res,next)=>{
-    const email=req.body.email
+    const email=req.body.params
     if(!email)
     next(new Errorx("not a valid request",404))
     else{

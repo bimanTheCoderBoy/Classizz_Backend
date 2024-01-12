@@ -22,7 +22,11 @@ class StudentService{
     
 
     }
-
+    static async getStudent({email}){
+        let student=await Student.findOne({email:email});
+        if (!student) throw new Errorx('No such user found',401);
+        return student;
+    }
 
 }
 
