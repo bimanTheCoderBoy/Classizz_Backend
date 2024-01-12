@@ -24,4 +24,10 @@ const createStudent=async(req,res,next)=>{
     }
 }
 
-module.exports={alreadyExist,createStudent}
+
+const getStudent=()=>{
+    
+}
+
+
+module.exports={alreadyExist,createStudent,getStudent}
