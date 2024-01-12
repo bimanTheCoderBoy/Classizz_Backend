@@ -9,6 +9,7 @@ const studentRoutes=require("./routes/student/student")
 const teacherRoutes=require("./routes/teacher/teacher")
 const cookieParser=require("cookie-parser")
 const authMiddleWare=require("./utils/auth")
+const userRoutes=require("./routes/user")
 
 const setRun=async()=>{
     await dbConnect();
@@ -16,7 +17,7 @@ const setRun=async()=>{
     app.use(express.json())
     app.use(cookieParser())   
      // app.use(cors())
-    // app.use("/user",userRoutes)
+    app.use("/user",userRoutes)
     app.use("/student",studentRoutes)
     app.use("/teacher",teacherRoutes)
     app.use(authMiddleWare)
