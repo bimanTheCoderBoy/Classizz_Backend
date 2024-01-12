@@ -1,5 +1,7 @@
+const { exists } = require("../../models/teacher")
 const TeacherService =require("../../services/teacher")
 const Errorx = require("../../utils/error/customError")
+const jwt=require("jsonwebtoken")
 const alreadyExist=async(req,res,next)=>{
     // console.log(req.body);
     try{
@@ -14,7 +16,11 @@ const createTeacher=async(req,res,next)=>{
     // console.log(req.body);
     try {
         const Teacher=await TeacherService.createTeacher(req.body)
-        res.send(Teacher)
+        const token = jwt.sign(req.body.email, process.env.JWTSECRET,);
+
+        // Set the JWT as a cookie
+        res.cookie('token', token, { httpOnly: true });
+        res.send(Teacher||"user exists")
     } catch (error) {
         next(new Errorx(error.message,error.status)); 
     }

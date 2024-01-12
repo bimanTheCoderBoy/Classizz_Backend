@@ -8,6 +8,7 @@ const errorHandler=require("./utils/error/handler")
 const studentRoutes=require("./routes/student/student")
 const teacherRoutes=require("./routes/teacher/teacher")
 const cookieParser=require("cookie-parser")
+const authMiddleWare=require("./utils/auth")
 
 const setRun=async()=>{
     await dbConnect();
@@ -18,8 +19,9 @@ const setRun=async()=>{
     // app.use("/user",userRoutes)
     app.use("/student",studentRoutes)
     app.use("/teacher",teacherRoutes)
+    app.use(authMiddleWare)
     app.get("*",(req,res,next)=>{
-        res.send("hello")
+        res.send(res.user)
     })
     app.use(errorHandler)
     const PORT=process.env.PORT||4500

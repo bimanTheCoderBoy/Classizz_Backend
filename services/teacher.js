@@ -17,8 +17,10 @@ class TeacherService{
        const newTeacher= await Teacher.create({email,name})
        if(!newTeacher) throw new Errorx("Teacher not created",404);
        newTeacher.save();
+       
         return "Teacher created"
     }
+
     }
 
 

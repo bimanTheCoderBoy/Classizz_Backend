@@ -17,8 +17,10 @@ class StudentService{
        const newStudent= await Student.create({email,name})
        if(!newStudent) throw new Errorx("Student not created",404);
        newStudent.save();
-        return "student created"
+       return "student created"
     }
+    
+
     }
 
 
