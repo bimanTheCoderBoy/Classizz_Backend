@@ -26,7 +26,7 @@ const createTeacher=async(req,res,next)=>{
     }
 }
 
-const getteacher=(req,res,next)=>{
+const getTeacher=(req,res,next)=>{
     try {
         const teacher=TeacherService.getTeacher(req.body);
 

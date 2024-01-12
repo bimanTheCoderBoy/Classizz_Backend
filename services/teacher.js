@@ -22,8 +22,12 @@ class TeacherService{
     }
 
     }
-
+    static async getTeacher({email}){
+        let teacher=await Teacher.findOne({email:email});
+        if (!teacher) throw new Errorx('No such user found',401);
+        return teacher;
+    }
 
 }
 
-module.exports= TeacherService;
+module.exports=TeacherService;
