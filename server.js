@@ -14,9 +14,10 @@ const userRoutes=require("./routes/user")
 const setRun=async()=>{
     await dbConnect();
     const  app=express();
+    app.use(cors({credentials:true,origin:"http://localhost:5173"}));  
     app.use(express.json())
     app.use(cookieParser())   
-     app.use(cors("http://localhost:5173"))
+     
     app.use("/user",userRoutes)
     app.use("/student",studentRoutes)
     app.use("/teacher",teacherRoutes)
