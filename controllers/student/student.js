@@ -13,7 +13,7 @@ const alreadyExist=async(req,res,next)=>{
 
 const createStudent=async(req,res,next)=>{
     try {
-        const student=await StudentService.createStudent(req.body)
+        const student=await StudentService.createStudent(JSON.parse(req.body))
         const token = jwt.sign(req.body.email, process.env.JWTSECRET,);
 
         // Set the JWT as a cookie
