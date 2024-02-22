@@ -18,6 +18,10 @@ const teacherSchema = new mongoose.Schema({
     type: [mongoose.Schema.Types.ObjectId],
     ref: 'Class',
   },
+  institutecode:{
+    type:Number,
+    default:()=>Math.round(Math.random() * 10000000000)
+  },
   joinedInstitutes: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: 'Teacher',

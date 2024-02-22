@@ -26,9 +26,9 @@ const createTeacher=async(req,res,next)=>{
     }
 }
 
-const getTeacher=(req,res,next)=>{
+const getTeacher=async(req,res,next)=>{
     try {
-        const teacher=TeacherService.getTeacher(req.body);
+        const teacher=await TeacherService.getTeacher(req.body);
 
         res.send(teacher)
     } catch (error) {
@@ -37,4 +37,22 @@ const getTeacher=(req,res,next)=>{
    
 }
 
-module.exports={alreadyExist,createTeacher,getTeacher}
+const sendCollabRequest=async(req,res,next)=>{
+    try {
+        await TeacherService.sendCollabRequest(req.body);
+        res.send({success:true});
+    } catch (error) {
+        next(new Errorx("Collab Not Send",500))
+    }
+}
+
+const acceptCollabRequest= async (req,res,next) =>{
+    try {
+        await TeacherService.acceptCollabRequest(req.body);
+        res.send({success:true});
+    } catch (error) {
+        next(new Errorx("Accept Collab Error",500))
+    }
+}
+
+module.exports={alreadyExist,createTeacher,getTeacher,sendCollabRequest,acceptCollabRequest}
