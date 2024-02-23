@@ -55,4 +55,61 @@ const acceptCollabRequest= async (req,res,next) =>{
     }
 }
 
-module.exports={alreadyExist,createTeacher,getTeacher,sendCollabRequest,acceptCollabRequest}
+const getsendcollabrequests=async(req,res,next)=>{
+    try {
+       const data= await TeacherService.getSendCollabRequests(req.params);
+        res.send({requests:data});
+    } catch (error) {
+        next(new Errorx(error.message||"Api Error",error.status||500))
+    }
+}
+
+const getreceivedcollabrequests=async(req,res,next)=>{
+    try {
+       const data= await TeacherService.getReceivedCollabRequests(req.params);
+        res.send({requests:data});
+    } catch (error) {
+        next(new Errorx(error.message||"Api Error",error.status||500))
+    }
+}
+
+
+const getMyTeachers=async(req,res,next)=>{
+    try {
+       const data= await TeacherService.getMyTeachers(req.params);
+        res.send({teachers:data});
+    } catch (error) {
+        next(new Errorx(error.message||"Api Error",error.status||500))
+    }
+}
+
+
+const getInstitutes=async(req,res,next)=>{
+    try {
+       const data= await TeacherService.getInstitutes(req.params);
+        res.send({success:true});
+    } catch (error) {
+        next(new Errorx(error.message||"Api Error",error.status||500))
+    }
+}
+
+const rejectCollabRequest=async(req,res,next)=>{
+    try {
+       const data= await TeacherService.rejectCollabRequest(req.body);
+        res.send({success:true});
+    } catch (error) {
+        next(new Errorx(error.message||"Api Error",error.status||500))
+    }
+}
+
+
+const removeTeacher=async(req,res,next)=>{
+    try {
+       const data= await TeacherService.removeTeacher(req.body);
+        res.send({success:true});
+    } catch (error) {
+        next(new Errorx(error.message||"Api Error",error.status||500))
+    }
+}
+
+module.exports={alreadyExist,createTeacher,getTeacher,sendCollabRequest,acceptCollabRequest,getsendcollabrequests,getreceivedcollabrequests,getInstitutes,getMyTeachers,rejectCollabRequest,removeTeacher}
